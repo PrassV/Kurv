@@ -67,6 +67,15 @@ h4 {
     letter-spacing: 0.05em;
 }
 
+.hero-logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: titleReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+}
+
 .hero-title {
     font-size: clamp(4rem, 12vw, 8rem);
     font-weight: 700;
@@ -295,99 +304,63 @@ h4 {
     background-color: var(--bg-darker);
 }
 
-.stack-diagram {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
     margin-top: 4rem;
 }
 
-.stack-layer {
-    display: flex;
-    gap: 3rem;
-    padding: 3rem 0;
-    border-left: 1px solid var(--line-color);
-    padding-left: 2rem;
+.pillar-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--line-color);
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.stack-layer.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.stack-layer::before {
-    content: '';
-    position: absolute;
-    left: -1px;
-    top: 0;
-    width: 1px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    background: var(--line-color);
 }
 
-.layer-number {
+.pillar-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--text-primary);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.pillar-number {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 2rem;
-    font-weight: 300;
+    font-size: 1.5rem;
     color: var(--text-muted);
-    min-width: 60px;
-    border-bottom: 1px solid var(--line-color);
-    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
 }
 
-.layer-content {
+.pillar-content {
     flex: 1;
 }
 
-.layer-title {
-    font-size: clamp(1.3rem, 3vw, 1.8rem);
-    margin-bottom: 1rem;
+.pillar-title {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
     letter-spacing: 0.05em;
 }
 
-.layer-description {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    color: var(--text-primary);
+.pillar-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--highlight);
     margin-bottom: 1.5rem;
+    text-transform: uppercase;
 }
 
-.layer-text {
-    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+.pillar-desc {
+    font-size: 0.95rem;
     color: var(--text-secondary);
-    line-height: 1.8;
-    margin-bottom: 1rem;
-}
-
-.layer-list {
-    list-style: none;
-    margin-top: 1.5rem;
-}
-
-.layer-list li {
-    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
-    color: var(--text-secondary);
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
-    position: relative;
-}
-
-.layer-list li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--text-muted);
-}
-
-.stack-connector {
-    width: 1px;
-    height: 2rem;
-    background: var(--line-color);
-    margin-left: 2rem;
+    line-height: 1.7;
 }
 
 /* Deployment Sections */
@@ -834,16 +807,17 @@ body {
 
 /* Enhanced visualization containers */
 
-content: '';
-position: absolute;
-top: -1px;
-left: -1px;
-right: -1px;
-bottom: -1px;
-background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-opacity: 0;
-transition: opacity 0.4s ease;
-pointer-events: none;
+.visualization-container::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
 .visualization-container:hover::before {
